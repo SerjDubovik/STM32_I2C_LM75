@@ -35,24 +35,27 @@ int main(void)
 
 	I2C1_init();
 
+    value = LM75_ReadReg(0x00);
+	value = LM75_ReadConf();
+	value = LM75_ReadReg(0x02);
+	value = LM75_ReadReg(0x03);
+
+    LM75_Shutdown(DISABLE);
+
+    int16_t temp = LM75_Temperature();
+    temp %= 10;
+
+    if (temp < 0)
+    {
+    	temp *= -1;
+    }
+
+
+
 
 	for(;;)
 	{
-		/*
-	    value = LM75_ReadReg(0x00);		// температура
-		value = LM75_ReadConf();
-		value = LM75_ReadReg(0x02);
-		value = LM75_ReadReg(0x03);
 
-	    LM75_Shutdown(DISABLE);
-*/
-	    int16_t temp = LM75_Temperature();
-	    temp %= 10;
-
-	    if (temp < 0)
-	    {
-	    	temp *= -1;
-	    }
 	}
 }
 
